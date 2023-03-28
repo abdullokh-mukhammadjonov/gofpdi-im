@@ -228,3 +228,8 @@ func (this *Importer) UseTemplate(tplid int, _x float64, _y float64, _w float64,
 	tplInfo := this.tplMap[tplid]
 	return tplInfo.Writer.UseTemplate(tplInfo.TemplateId, _x, _y, _w, _h)
 }
+
+// For a given template get number of pages
+func (this *Importer) GetTemplatePageCountByBox(box string) int {
+	return this.GetWriter().GetTemplatePageCount(this.GetReader())
+}

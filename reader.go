@@ -6,12 +6,13 @@ import (
 	"compress/zlib"
 	"encoding/binary"
 	"fmt"
-	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
 	"math"
 	"os"
 	"strconv"
+
+	"github.com/pkg/errors"
 )
 
 type PdfReader struct {
@@ -221,8 +222,6 @@ func (this *PdfReader) readToken(r *bufio.Reader) (string, error) {
 		}
 		return str, nil
 	}
-
-	return "", nil
 }
 
 // Read a value based on a token
@@ -735,8 +734,6 @@ func (this *PdfReader) resolveObject(objSpec *PdfValue) (*PdfValue, error) {
 	} else {
 		return objSpec, nil
 	}
-
-	return &PdfValue{}, nil
 }
 
 // Find the xref offset (should be at the end of the PDF)
@@ -1629,4 +1626,9 @@ func (this *PdfReader) read() error {
 	}
 
 	return nil
+}
+
+// get number of pages
+func (this *PdfReader) getPageCount() int {
+	return len(this.pages)
 }

@@ -566,3 +566,8 @@ func (this *PdfWriter) UseTemplate(tplid int, _x float64, _y float64, _w float64
 
 	return fmt.Sprintf("/GOFPDITPL%d", tplid+this.tpl_id_offset), tData["scaleX"], tData["scaleY"], tData["tx"] * this.k, tData["ty"] * this.k
 }
+
+// Get number of pages for given template
+func (this *PdfWriter) GetTemplatePageCount(reader *PdfReader) (int) {
+	return reader.getPageCount()
+}
